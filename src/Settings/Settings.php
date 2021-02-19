@@ -29,11 +29,12 @@ class Settings
         return $this;
     }
 
-    public function equals(array $settings): bool
+    public function hasDefaultsSet(): bool
     {
         return (
-            count($this->settings) === count($settings)
-            && array_diff($this->settings, $settings) === array_diff($settings, $this->settings)
+            count($this->settings) === count($this->defaultSettings)
+            && array_diff($this->settings, $this->defaultSettings)
+            === array_diff($this->defaultSettings, $this->settings)
         );
     }
 
