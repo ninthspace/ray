@@ -10,7 +10,9 @@ class SettingsFactory
     {
         $settingValues = (new static())->getSettingsFromConfigFile($configDirectory);
 
-        return new Settings($settingValues);
+        $defaultValues = array_merge(Settings::getDefaults(), $settingValues);
+
+        return new Settings($defaultValues);
     }
 
     public function getSettingsFromConfigFile(string $configDirectory = null): array

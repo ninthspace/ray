@@ -8,7 +8,7 @@ class Settings
     protected $settings = [];
 
     /** @var array */
-    protected $defaultSettings = [
+    protected static $defaultSettings = [
         'enable' => true,
         'host' => 'localhost',
         'port' => 23517,
@@ -19,7 +19,12 @@ class Settings
 
     public function __construct(array $settings)
     {
-        $this->settings = array_merge($this->defaultSettings, $settings);
+        $this->settings = $settings;
+    }
+
+    public static function getDefaults(): array
+    {
+        return self::$defaultSettings;
     }
 
     public function setDefaultSettings(array $defaults): self
