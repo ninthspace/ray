@@ -15,6 +15,19 @@ class SettingsFactory
         return new Settings($defaultValues);
     }
 
+    public static function createFromArray(array $defaults): Settings
+    {
+        $settings = new Settings([]);
+        $settings->setDefaultSettings($defaults);
+
+        return $settings;
+    }
+
+    public static function getSettingsFromConfig(string $configDirectory = null): array
+    {
+        return (new static())->getSettingsFromConfigFile($configDirectory);
+    }
+
     public function getSettingsFromConfigFile(string $configDirectory = null): array
     {
         $configFilePath = $this->searchConfigFiles($configDirectory);
