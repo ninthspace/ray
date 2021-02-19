@@ -29,6 +29,14 @@ class Settings
         return $this;
     }
 
+    public function equals(array $settings): bool
+    {
+        return (
+            count($this->settings) === count($settings)
+            && array_diff($this->settings, $settings) === array_diff($settings, $this->settings)
+        );
+    }
+
     public function __set(string $name, $value)
     {
         $this->settings[$name] = $value;
